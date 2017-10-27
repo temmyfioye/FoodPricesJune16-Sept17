@@ -1,7 +1,6 @@
 
 # coding: utf-8
 
-# In[1]:
 
 #import necessary packages
 import pandas as pd
@@ -12,27 +11,21 @@ import matplotlib.pyplot as plt
 # In[2]:
 
 #parse and read the file
-df = pd.read_csv('C://Users//admin//Documents//food_prices_watch.csv') #reading the file
+df = pd.read_csv('..insert file path here') #reading the file
 df.info() #parsing it
-
-
-# In[3]:
 
 timeline = ('Jun-16','Jul-16', 'Aug-16', 'Sep-16','Oct-16','Nov-16','Dec-16','Jan-17','Feb-17','Mar-17','Apr-17','May-17','Jun-17', 'Jul-17', 'Aug-17', 'Sep-17') #this is a list of the labels that will appear in the chart
 
 
-# In[4]:
-
 print (df.ItemLabels)
 
 
-# In[5]:
 
 #food items of interest are: Tomato, Medium Grain Rice, White Garri (sold loose), Yam Tuber, 
 #Brown Beans (sold loose) and Onion bulb
 
 
-# In[6]:
+
 
 # Function definition is here
 def acceptitem( itemlabel ):
@@ -42,7 +35,7 @@ def acceptitem( itemlabel ):
     return fooditem;
 
 
-# In[7]:
+
 
 #accepting user input for first food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -52,7 +45,7 @@ itemlabel1 = itemlabel
 print (itemlabel, '= ', y1)
 
 
-# In[8]:
+
 
 #accepting user input for second food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -62,7 +55,7 @@ itemlabel2 = itemlabel
 print (itemlabel, '= ', y2)
 
 
-# In[9]:
+
 
 #accepting user input for third food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -72,7 +65,7 @@ itemlabel3 = itemlabel
 print (itemlabel, '= ', y3)
 
 
-# In[10]:
+
 
 #accepting user input for fourth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -82,7 +75,7 @@ itemlabel4 = itemlabel
 print (itemlabel, '= ', y4)
 
 
-# In[11]:
+
 
 #accepting user input for fifth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -92,7 +85,7 @@ itemlabel5 = itemlabel
 print (itemlabel, '= ', y5)
 
 
-# In[13]:
+
 
 #accepting user input for sixth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -102,7 +95,7 @@ itemlabel6 = itemlabel
 print (itemlabel, '= ', y6)
 
 
-# In[15]:
+
 
 #plotting the data
 x_axis = np.arange(len(timeline))
@@ -118,11 +111,11 @@ plt.plot(x_axis,y4, '-', color='#666600', label= itemlabel4) #red and green mix
 plt.plot(x_axis,y5, '-', color='#008000', label= itemlabel5) #green
 plt.plot(x_axis,y6, '-', color='#800080', label= itemlabel6) #purple
 plt.legend(loc='upper left')
-#plt.savefig('C://Users//admin//Documents//food-prices-2.jpg')
+
 plt.show()
 
 
-# In[ ]:
+
 
 
 
