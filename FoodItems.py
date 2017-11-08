@@ -8,44 +8,47 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# In[2]:
 
 #parse and read the file
 df = pd.read_csv('..insert file path here') #reading the file
 df.info() #parsing it
 
-timeline = ('Jun-16','Jul-16', 'Aug-16', 'Sep-16','Oct-16','Nov-16','Dec-16','Jan-17','Feb-17','Mar-17','Apr-17','May-17','Jun-17', 'Jul-17', 'Aug-17', 'Sep-17') #this is a list of the labels that will appear in the chart
-
-
 print (df.ItemLabels)
 
-
-
-#food items of interest are: Tomato, Medium Grain Rice, White Garri (sold loose), Yam Tuber, 
+#food items of interest are: Tomato, Medium Grain Rice, White Gari (sold loose), Yam Tuber, 
 #Brown Beans (sold loose) and Onion bulb
 
+global start_month
+global end_month
+global timeperiod
+global xlabel 
+start_month = input('Numerical value of start month using column values above: ') #first month on the plot
+start_month = int(start_month)
+last_month = input('Numerical value of end month using column values above: ') #last month on the plot
+last_month = int(last_month)+1
+months = df.columns.values[start_month:last_month]
+timeperiod = len(months) #number of months
+f_month = months[0]
+l_month = months[-1]
+print(f_month)
+print(l_month)
+print (months)
+print ('Number of months is ', timeperiod)
+xlabel = 'Timeline: ' + f_month + ' to ' + l_month
+print(xlabel)
 
-
-
-# Function definition is here
+# Function definition is here    
 def acceptitem( itemlabel ):
     fooditem = df[df.ItemLabels == itemlabel] #getting the data for entered item
-    fooditem = fooditem.iloc[:,6:]  #selecting data for June 2016-September 2017
+    fooditem = fooditem.iloc[:,start_month:last_month]  #selecting data from june to last month
     fooditem = fooditem.values.T.tolist() #put the data in a list
     return fooditem;
 
-
-
-
-#accepting user input for first food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
 #calling the function acceptitem
 y1 = acceptitem( itemlabel )
 itemlabel1 = itemlabel
 print (itemlabel, '= ', y1)
-
-
-
 
 #accepting user input for second food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -54,18 +57,12 @@ y2 = acceptitem( itemlabel )
 itemlabel2 = itemlabel
 print (itemlabel, '= ', y2)
 
-
-
-
 #accepting user input for third food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
 #calling the function acceptitem
 y3 = acceptitem( itemlabel )
 itemlabel3 = itemlabel
 print (itemlabel, '= ', y3)
-
-
-
 
 #accepting user input for fourth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -74,18 +71,12 @@ y4 = acceptitem( itemlabel )
 itemlabel4 = itemlabel
 print (itemlabel, '= ', y4)
 
-
-
-
 #accepting user input for fifth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
 #calling the function acceptitem
 y5 = acceptitem( itemlabel )
 itemlabel5 = itemlabel
 print (itemlabel, '= ', y5)
-
-
-
 
 #accepting user input for sixth food item
 itemlabel = input('Enter a food item as specified in the label output above: ')
@@ -95,12 +86,10 @@ itemlabel6 = itemlabel
 print (itemlabel, '= ', y6)
 
 
-
-
 #plotting the data
-x_axis = np.arange(len(timeline))
-plt.xticks(x_axis, timeline, rotation='vertical')
-plt.xlabel('Timeline (June 2016-September 2017)')
+x_axis = np.arange(timeperiod)
+plt.xticks(x_axis, months, rotation='vertical')
+plt.xlabel(xlabel)
 plt.ylabel('Price per KG')
 plt.ylim(150, 500)
 plt.title('Changes in price of selected food items')
@@ -111,11 +100,5 @@ plt.plot(x_axis,y4, '-', color='#666600', label= itemlabel4) #red and green mix
 plt.plot(x_axis,y5, '-', color='#008000', label= itemlabel5) #green
 plt.plot(x_axis,y6, '-', color='#800080', label= itemlabel6) #purple
 plt.legend(loc='upper left')
-
+#plt.savefig('C://Users//admin//Documents//food-prices-2.jpg')
 plt.show()
-
-
-
-
-
-
